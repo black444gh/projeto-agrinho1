@@ -1,0 +1,694 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vida Rural - Conhecendo Fazendas e Sítios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #3e6b37;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        nav {
+            background-color: #2c4a26;
+            padding: 15px 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #f8d56f;
+        }
+        
+        .hero {
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/400') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #f8d56f;
+            color: #333;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e5c35a;
+        }
+        
+        .main-content {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            color: #3e6b37;
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 60px;
+        }
+        
+        .feature {
+            flex-basis: 32%;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .feature h3 {
+            margin-bottom: 15px;
+            color: #3e6b37;
+            font-size: 1.5rem;
+        }
+        
+        .feature p {
+            line-height: 1.6;
+        }
+        
+        .topics {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .topic {
+            flex-basis: 48%;
+            margin-bottom: 40px;
+        }
+        
+        .topic h3 {
+            margin-bottom: 15px;
+            color: #3e6b37;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #f8d56f;
+            padding-bottom: 10px;
+        }
+        
+        .topic p, .topic ul {
+            line-height: 1.6;
+        }
+        
+        .topic ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .testimonials {
+            background-color: #e8f4e5;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .testimonial .author {
+            font-weight: bold;
+            color: #3e6b37;
+        }
+        
+        .gallery {
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            flex-basis: 300px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .newsletter {
+            background-color: #3e6b37;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 20px;
+        }
+        
+        .newsletter p {
+            margin-bottom: 30px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            background-color: #f8d56f;
+            color: #333;
+            border: none;
+            padding: 0 25px;
+            border-radius: 0 5px 5px 0;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: #e5c35a;
+        }
+        
+        footer {
+            background-color: #2c4a26;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-section {
+            flex-basis: 30%;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f8d56f;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section p, .footer-section ul {
+            line-height: 1.6;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #f8d56f;
+        }
+        
+        .footer-bottom {
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .feature {
+                flex-basis: 100%;
+            }
+            
+            .topic {
+                flex-basis: 100%;
+            }
+            
+            .footer-section {
+                flex-basis: 100%;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-form button {
+                border-radius: 5px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Vida Rural</div>
+        <p>Conhecendo Fazendas e Sítios Brasileiros</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#agricultura">Agricultura</a></li>
+            <li><a href="#pecuaria">Pecuária</a></li>
+            <li><a href="#sustentabilidade">Sustentabilidade</a></li>
+            <li><a href="#turismo">Turismo Rural</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Descubra o Encanto da Vida no Campo</h1>
+            <p>Informações, dicas e histórias sobre fazendas e sítios brasileiros. Um portal completo para amantes da vida rural.</p>
+            <a href="#sobre" class="btn">Saiba Mais</a>
+        </div>
+    </section>
+    
+    <main class="main-content">
+        <section id="sobre">
+            <h2 class="section-title">Bem-vindo ao Vida Rural</h2>
+            <div class="features">
+                <div class="feature">
+                    <img src="/api/placeholder/400/200" alt="Fazenda tradicional brasileira">
+                    <h3>Conhecimento Rural</h3>
+                    <p>Nosso portal reúne informações valiosas sobre a vida no campo, técnicas agrícolas, manejo de animais e muito mais. Aqui você encontra tudo o que precisa saber para entender ou iniciar sua própria jornada rural.</p>
+                </div>
+                <div class="feature">
+                    <img src="/api/placeholder/400/200" alt="Plantação sustentável">
+                    <h3>Práticas Sustentáveis</h3>
+                    <p>Promovemos práticas agrícolas e pecuárias que respeitem o meio ambiente e garantam a sustentabilidade dos recursos naturais. Aprenda como produzir alimentos de qualidade preservando a natureza.</p>
+                </div>
+                <div class="feature">
+                    <img src="/api/placeholder/400/200" alt="Família no campo">
+                    <h3>Estilo de Vida</h3>
+                    <p>Muito mais que um lugar de trabalho, fazendas e sítios representam um estilo de vida único. Descubra histórias inspiradoras de pessoas que escolheram o campo como lar e como isso transformou suas vidas.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="agricultura">
+            <h2 class="section-title">Agricultura</h2>
+            <div class="topics">
+                <div class="topic">
+                    <h3>Cultivos Tradicionais</h3>
+                    <p>O Brasil possui uma rica tradição agrícola com diversos cultivos que são a base da economia rural do país. Conheça mais sobre:</p>
+                    <ul>
+                        <li>Café: técnicas de plantio, colheita e processamento</li>
+                        <li>Cana-de-açúcar: manejo da cultura e aproveitamento</li>
+                        <li>Milho e soja: plantio direto e rotação de culturas</li>
+                        <li>Frutas tropicais: variedades e cuidados específicos</li>
+                    </ul>
+                </div>
+                <div class="topic">
+                    <h3>Agricultura Familiar</h3>
+                    <p>A agricultura familiar representa mais de 70% da produção de alimentos consumidos pelos brasileiros. Entenda sua importância e desafios:</p>
+                    <ul>
+                        <li>Diversificação de cultivos e segurança alimentar</li>
+                        <li>Acesso a mercados e valorização dos produtos</li>
+                        <li>Programas de incentivo e políticas públicas</li>
+                        <li>Casos de sucesso em diferentes regiões do país</li>
+                    </ul>
+                </div>
+                <div class="topic">
+                    <h3>Hortas Orgânicas</h3>
+                    <p>O cultivo orgânico cresce cada vez mais como alternativa sustentável. Aprenda sobre:</p>
+                    <ul>
+                        <li>Princípios básicos da agricultura orgânica</li>
+                        <li>Controle natural de pragas e doenças</li>
+                        <li>Compostagem e adubação verde</li>
+                        <li>Certificação e comercialização de produtos orgânicos</li>
+                    </ul>
+                </div>
+                <div class="topic">
+                    <h3>Tecnologia no Campo</h3>
+                    <p>A tecnologia revoluciona a produção agrícola, mesmo em pequenas propriedades:</p>
+                    <ul>
+                        <li>Irrigação eficiente e monitoramento do solo</li>
+                        <li>Agricultura de precisão acessível</li>
+                        <li>Aplicativos e ferramentas digitais para o produtor</li>
+                        <li>Energia solar e outras tecnologias sustentáveis</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="pecuaria">
+            <h2 class="section-title">Pecuária</h2>
+            <div class="topics">
+                <div class="topic">
+                    <h3>Criação de Bovinos</h3>
+                    <p>A criação de gado é uma das principais atividades rurais no Brasil, com diferentes sistemas:</p>
+                    <ul>
+                        <li>Gado de corte: raças adaptadas e manejo de pastagens</li>
+                        <li>Produção leiteira: ordenha, qualidade do leite e bem-estar animal</li>
+                        <li>Sistemas silvipastoris e integração lavoura-pecuária</li>
+                        <li>Controle sanitário e alimentação adequada</li>
+                    </ul>
+                </div>
+                <div class="topic">
+                    <h3>Avicultura e Suinocultura</h3>
+                    <p>Atividades que podem ser desenvolvidas em pequenas e médias propriedades:</p>
+                    <ul>
+                        <li>Criação de galinhas caipiras para ovos e carne</li>
+                        <li>Estrutura básica para criação de suínos</li>
+                        <li>Raças ideais para cada finalidade</li>
+                        <li>Manejo sanitário e nutricional</li>
+                    </ul>
+                </div>
+                <div class="topic">
+                    <h3>Animais de Pequeno Porte</h3>
+                    <p>Alternativas rentáveis para pequenas propriedades rurais:</p>
+                    <ul>
+                        <li>Caprinocultura e ovinocultura</li>
+                        <li>Criação de coelhos</li>
+                        <li>Piscicultura em tanques</li>
+                        <li>Apicultura e meliponicultura</li>
+                    </ul>
+                </div>
+                <div class="topic">
+                    <h3>Bem-estar Animal</h3>
+                    <p>Práticas humanitárias que beneficiam animais e produtores:</p>
+                    <ul>
+                        <li>Estruturas adequadas e conforto térmico</li>
+                        <li>Manejo racional e de baixo estresse</li>
+                        <li>Alimentação balanceada e acesso à água limpa</li>
+                        <li>Prevenção de doenças e cuidados veterinários</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="sustentabilidade">
+            <h2 class="section-title">Sustentabilidade</h2>
+            <div class="topics">
+                <div class="topic">
+                    <h3>Preservação Ambiental</h3>
+                    <p>Conservar os recursos naturais é essencial para a continuidade da produção rural:</p>
+                    <ul>
+                        <li>Recuperação de nascentes e matas ciliares</li>
+                        <li>Manejo sustentável de florestas</li>
+                        <li>Corredores ecológicos e reservas legais</li>
+                        <li>Conservação do solo e controle de erosão</li>
+                    </ul>
+                </div>
+                <div class="topic">
+                    <h3>Energias Renováveis</h3>
+                    <p>Alternativas energéticas que reduzem custos e impactos ambientais:</p>
+                    <ul>
+                        <li>Energia solar fotovoltaica para propriedades rurais</li>
+                        <li>Biogás a partir de resíduos animais</li>
+                        <li>Aproveitamento de quedas d'água</li>
+                        <li>Sistemas eólicos de pequeno porte</li>
+                    </ul>
+                </div>
+                <div class="topic">
+                    <h3>Gestão de Resíduos</h3>
+                    <p>Transformar resíduos em recursos é fundamental no campo:</p>
+                    <ul>
+                        <li>Compostagem de resíduos orgânicos</li>
+                        <li>Reaproveitamento de água</li>
+                        <li>Destinação adequada de embalagens de agrotóxicos</li>
+                        <li>Reciclagem e reuso de materiais</li>
+                    </ul>
+                </div>
+                <div class="topic">
+                    <h3>Agroecologia</h3>
+                    <p>Um sistema de produção que integra conhecimentos tradicionais e científicos:</p>
+                    <ul>
+                        <li>Princípios e práticas agroecológicas</li>
+                        <li>Sistemas agroflorestais e consórcios</li>
+                        <li>Recuperação de solos degradados</li>
+                        <li>Agrobiodiversidade e sementes crioulas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="turismo">
+            <h2 class="section-title">Turismo Rural</h2>
+            <div class="topics">
+                <div class="topic">
+                    <h3>Hospedagem Rural</h3>
+                    <p>Abrir as portas da propriedade para visitantes pode ser uma excelente fonte de renda:</p>
+                    <ul>
+                        <li>Estrutura básica para receber turistas</li>
+                        <li>Aspectos legais e burocráticos</li>
+                        <li>Marketing e divulgação do seu espaço</li>
+                        <li>Hospitalidade rural e experiências autênticas</li>
+                    </ul>
+                </div>
+                <div class="topic">
+                    <h3>Gastronomia Rural</h3>
+                    <p>A culinária tradicional atrai visitantes e valoriza produtos locais:</p>
+                    <ul>
+                        <li>Cafés coloniais e refeições típicas</li>
+                        <li>Produção artesanal de alimentos</li>
+                        <li>Atendimento a normas sanitárias</li>
+                        <li>Rotas gastronômicas rurais</li>
+                    </ul>
+                </div>
+                <div class="topic">
+                    <h3>Atividades e Experiências</h3>
+                    <p>Proporcionar vivências únicas fortalece o turismo rural:</p>
+                    <ul>
+                        <li>Participação em atividades da fazenda</li>
+                        <li>Trilhas ecológicas e observação da natureza</li>
+                        <li>Oficinas de produtos artesanais</li>
+                        <li>Eventos rurais e festivais temáticos</li>
+                    </ul>
+                </div>
+                <div class="topic">
+                    <h3>Casos de Sucesso</h3>
+                    <p>Inspire-se em propriedades que se reinventaram com o turismo rural:</p>
+                    <ul>
+                        <li>Fazendas históricas abertas à visitação</li>
+                        <li>Vinícolas e enoturismo</li>
+                        <li>Roteiros de turismo rural em diferentes regiões</li>
+                        <li>Propriedades educativas e pedagógicas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <h2 class="section-title">Histórias do Campo</h2>
+            <div class="testimonial">
+                <p>"Depois de 30 anos na cidade, decidi voltar às origens e iniciar um pequeno sítio de produção orgânica. O conhecimento que encontrei neste portal foi fundamental para dar os primeiros passos com segurança e hoje vivo da terra com qualidade de vida."</p>
+                <div class="author">Carlos Oliveira - Produtor Rural em Minas Gerais</div>
+            </div>
+            
+            <div class="testimonial">
+                <p>"Nossa fazenda de leite estava enfrentando dificuldades quando descobrimos técnicas mais sustentáveis de manejo de pastagens. Aplicamos o conhecimento, melhoramos o bem-estar dos animais e nossa produção aumentou 30% com custos reduzidos."</p>
+                <div class="author">Ana e Paulo Souza - Produtores de Leite no Paraná</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="gallery">
+        <h2 class="section-title">Galeria Rural</h2>
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/200" alt="Nascer do sol na fazenda">
+            </div>
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/200" alt="Plantação de café">
+            </div>
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/200" alt="Gado no pasto">
+            </div>
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/200" alt="Colheita de milho">
+            </div>
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/200" alt="Horta orgânica">
+            </div>
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/200" alt="Pôr do sol no campo">
+            </div>
+        </div>
+    </section>
+    
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2>Receba Nossas Novidades</h2>
+            <p>Cadastre-se para receber dicas, artigos e notícias sobre o mundo rural diretamente no seu e-mail.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Seu melhor e-mail" required>
+                <button type="submit">Inscrever-se</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre Nós</h3>
+                <p>O Vida Rural é um portal dedicado a compartilhar conhecimentos sobre fazendas e sítios brasileiros, promovendo práticas sustentáveis e valorizando a cultura do campo.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#agricultura">Agricultura</a></li>
+                    <li><a href="#pecuaria">Pecuária</a></li>
+                    <li><a href="#sustentabilidade">Sustentabilidade</a></li>
+                    <li><a href="#turismo">Turismo Rural</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <ul>
+                    <li>contato@vidarural.com.br</li>
+                    <li>(XX) XXXX-XXXX</li>
+                    <li>Redes Sociais: @vidarural</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Vida Rural - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
